@@ -1,46 +1,58 @@
 # Guardrails API Console
 
-This folder contains a single standalone HTML page that lets you test the Core API & Guardrails backend from the browser.
+This folder contains a single HTML page that acts as a lightweight browser client for the Core API & Guardrails backend.
 
-## Files
+Use it when you want to test the API without Postman.
 
-- `guardrails-api.html` - the main page
-- `style.css` - existing HTML folder styles, if you want to reuse them
+## What is inside
 
-## What it does
+- [guardrails-api.html](guardrails-api.html) - the main page
+- [style.css](style.css) - legacy styles for other HTML samples in this folder
 
-The page can:
+## What the page does
+
+The page lets you:
 
 - create a post
 - like a post
 - add a comment
-- show the raw API response on the page
+- inspect the raw JSON response
 
-It talks to the backend at `http://localhost:8080` by default.
+## Before you start
 
-## Prerequisites
+Make sure the backend is running first.
 
-Start the backend first:
+1. Open the backend folder:
 
-1. Run PostgreSQL and Redis from the `Core API & Guardrails` folder:
+```powershell
+cd "Core API & Guardrails"
+```
+
+2. Start PostgreSQL and Redis:
 
 ```powershell
 docker compose up -d
 ```
 
-2. Start the Spring Boot app:
+3. Start the Spring Boot application:
 
 ```powershell
 mvn spring-boot:run
 ```
 
-3. Make sure the app is reachable at:
+4. Confirm the backend is reachable at:
 
 ```text
 http://localhost:8080
 ```
 
-## Seed data
+## Open the page
+
+Open [guardrails-api.html](guardrails-api.html) in any browser.
+
+The base URL is set to `http://localhost:8080` by default. Change it at the top of the page if your backend runs somewhere else.
+
+## Seed data used by the demo
 
 The page is prefilled for these sample records:
 
@@ -49,23 +61,17 @@ The page is prefilled for these sample records:
 - Bot `3` - TechBot
 - Bot `4` - NewsBot
 
-If your database is empty, insert the same sample data before testing.
+If the database is empty, insert these records before testing.
 
-## How to use the page
+## API actions
 
-1. Open `guardrails-api.html` in a browser.
-2. Leave the base URL as `http://localhost:8080` unless your backend runs elsewhere.
-3. Use **Create Post** first to get a fresh post id.
-4. Use **Like Post** or **Add Comment** with that post id.
-5. The API response appears in the response panel at the bottom.
+The page calls these endpoints:
 
-## API endpoints used
+- `POST /api/posts` - create a post
+- `POST /api/posts/{postId}/like` - like a post
+- `POST /api/posts/{postId}/comments` - add a comment
 
-- `POST /api/posts`
-- `POST /api/posts/{postId}/like`
-- `POST /api/posts/{postId}/comments`
-
-## Example payloads
+## Example requests
 
 Create post:
 
@@ -98,8 +104,8 @@ Add comment:
 }
 ```
 
-## Notes
+## If something fails
 
-- The backend has CORS enabled for `/api/**`, so the page can call the API directly.
-- If the API response says `Not Found` or `User not found`, check that the seed data was inserted correctly.
-- If you change the backend port, update the base URL at the top of the page.
+- If you see `User not found`, verify the sample data was inserted.
+- If the browser blocks requests, make sure the backend is running and CORS is enabled.
+- If you changed the backend port, update the base URL field in the page.

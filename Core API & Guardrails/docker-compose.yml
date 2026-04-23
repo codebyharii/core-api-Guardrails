@@ -1,0 +1,25 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: guardrails-postgres
+    environment:
+      POSTGRES_DB: guardrails
+      POSTGRES_USER: guardrails
+      POSTGRES_PASSWORD: guardrails
+    ports:
+      - "5432:5432"
+    volumes:
+      - guardrails_postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: guardrails-redis
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - guardrails_redis_data:/data
+
+volumes:
+  guardrails_postgres_data:
+  guardrails_redis_data:

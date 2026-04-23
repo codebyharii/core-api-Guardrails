@@ -1,0 +1,7 @@
+*
+!/.gitignore
+!/README.md
+!/HTML/
+!/HTML/**
+!/Core API & Guardrails/
+!/Core API & Guardrails/**

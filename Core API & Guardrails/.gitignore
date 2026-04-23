@@ -1,0 +1,7 @@
+target/
+.idea/
+.vscode/
+*.iml
+.DS_Store
+ASSIGNMENT_PLAN.md
+ass_plan.md

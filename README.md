@@ -52,5 +52,5 @@ The demo page is prefilled for these ids:
 - User `2` - Bob
 - Bot `3` - TechBot
 - Bot `4` - NewsBot
-
+ok
 If the database is empty, seed these records before testing the page.
